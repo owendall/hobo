@@ -13,7 +13,12 @@ module HoboFields
       field(:created_at, :datetime)
       field(:updated_at, :datetime)
     end
-
+    
+    def userstamps
+      field(:created_at, :datetime)
+      field(:updated_at, :datetime)
+      @model.add_callbacks_for_userstamps
+    end
 
     def field(name, type, *args)
       @model.declare_field(name, type, *args)

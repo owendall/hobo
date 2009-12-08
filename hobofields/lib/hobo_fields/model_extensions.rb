@@ -130,6 +130,27 @@ module HoboFields
         end
       end
     end
+    
+    
+    # Callbacks for userstamps
+    def self.add_callbacks_for_userstamps
+    	if self.column(:created_by)
+	    	self.class_eval <<-EOS
+	    		before_create :stamp_created_by
+	    		def stamp_created_by
+	    			self.created_by ||= self.acting_user.try.id
+    			end
+	    	EOS
+		end
+		if self.column(:updated_by)	    	
+	    	self.class_eval <<-EOS
+	    		before_update :stamp_updated_by
+	    		def stamp_updated_by
+	    			self.updated_by = self.acting_user.try.id
+    			end
+	    	EOS
+		end
+    end
 
 
     def self.add_formatting_for_field(name, type, args)
