@@ -19,6 +19,11 @@ module HoboFields
       field(:updated_by, :datetime)
       @model.add_callbacks_for_userstamps
     end
+    
+    def usertimestamps
+      timestamps
+      userstamps
+    end
 
     def field(name, type, *args)
       @model.declare_field(name, type, *args)
