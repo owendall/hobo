@@ -15,8 +15,8 @@ module HoboFields
     end
     
     def userstamps
-      field(:created_at, :datetime)
-      field(:updated_at, :datetime)
+      field(:created_by, :datetime)
+      field(:updated_by, :datetime)
       @model.add_callbacks_for_userstamps
     end
 
