@@ -306,6 +306,33 @@ Cleanup:
 
         >> Advert.field_specs.delete(:updated_at)
         >> Advert.field_specs.delete(:created_at)
+        
+### Userstamps
+
+`updated_by` and `created_by` can be declared with the shorthand `userstamps`
+To declare both timestamps and userstamps in the same declaration, the shorthand `usertimestamps` could be used
+
+        >>
+         class Advert
+           fields do
+             userstamps
+           end
+         end
+        >> up, down = HoboFields::MigrationGenerator.run
+        >> up
+        =>
+         "add_column :adverts, :created_by, :integer
+         add_column :adverts, :updated_by, :integer"
+        >> down
+        =>
+         "remove_column :adverts, :created_by
+         remove_column :adverts, :updated_by"
+        >>
+
+Cleanup:
+
+        >> Advert.field_specs.delete(:updated_by)
+        >> Advert.field_specs.delete(:created_by)
 
 
 ### Rename a table

@@ -138,7 +138,7 @@ module HoboFields
 	    	self.class_eval <<-EOS
 	    		before_create :stamp_created_by
 	    		def stamp_created_by
-	    			self.created_by ||= self.acting_user.try.id
+	    			self.created_by ||= self.acting_user
     			end
 	    	EOS
 		end
@@ -146,7 +146,7 @@ module HoboFields
 	    	self.class_eval <<-EOS
 	    		before_update :stamp_updated_by
 	    		def stamp_updated_by
-	    			self.updated_by = self.acting_user.try.id
+	    			self.updated_by = self.acting_user
     			end
 	    	EOS
 		end
