@@ -15,8 +15,8 @@ module HoboFields
     end
     
     def userstamps
-      @model.belongs_to :created_by, :foreign_key => :created_by
-      @model.belongs_to :updated_by, :foreign_key => :updated_by
+      @model.belongs_to :created_by, :foreign_key => :created_by, :class_name => "User"
+      @model.belongs_to :updated_by, :foreign_key => :updated_by, :class_name => "User"
       @model.add_callbacks_for_userstamps
     end
     
